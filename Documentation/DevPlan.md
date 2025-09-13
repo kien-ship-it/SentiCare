@@ -19,7 +19,7 @@ Of course. Here is a detailed development plan focusing solely on the initial ap
     *   **Tech Specification:**
         *   Utilize **Vite** for project creation (`npm create vite@latest`) to ensure a fast development server and optimized builds.
         *   Select the **React** template.
-        *   Project Name: `senticare-dashboard`.
+        *   Project Name: `senticare`.
 
 *   **1.2. Dependency Installation:**
     *   **Instruction:** Install the foundational libraries required for routing and Firebase connectivity.
@@ -63,7 +63,7 @@ Of course. Here is a detailed development plan focusing solely on the initial ap
     *   **Instruction:** Register your local React application with the Firebase project to get the necessary connection credentials.
     *   **Tech Specification:**
         *   In Project Settings, go to "Your apps" and add a new "Web" app.
-        *   App Nickname: `SentiCare Dashboard`.
+        *   App Nickname: `SentiCare`.
         *   Do **not** enable Firebase Hosting at this stage.
         *   Upon registration, Firebase will provide a `firebaseConfig` JavaScript object. Copy this object as it will be used in the next phase.
 
