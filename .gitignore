@@ -1,3 +1,6 @@
+scripts/serviceAccountKey.json
+
+
 # Logs
 logs
 *.log
@@ -6,7 +9,7 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
-
+x
 # Firebase cache
 .firebase/
 
@@ -67,3 +70,4 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+senticare/scripts/serviceAccountKey.json
