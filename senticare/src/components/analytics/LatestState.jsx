@@ -1,11 +1,12 @@
 // src/components/analytics/LatestState.jsx
 import React, { useState, useEffect } from 'react';
-import { collection, query, where, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, orderBy, limit, onSnapshot, doc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { PATIENT_ID } from '../../firebase/appConfig';
 
 function LatestState() {
   const [lastActivity, setLastActivity] = useState(null);
+  const [dailySummary, setDailySummary] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -31,6 +32,30 @@ function LatestState() {
 
     return () => {
       unsubscribeActivity();
+    };
+  }, []);
+
+  // Set up listener for today's daily summary
+  useEffect(() => {
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+    const dailySummaryId = `${PATIENT_ID}_${today}`;
+    
+    // Create reference to today's daily summary document
+    const dailySummaryRef = doc(db, 'dailySummaries', dailySummaryId);
+    
+    // Set up real-time listener for daily summary
+    const unsubscribe = onSnapshot(dailySummaryRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setDailySummary(docSnap.data());
+      } else {
+        // Document doesn't exist yet (no data for today)
+        setDailySummary(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
     };
   }, []);
 
@@ -71,11 +96,29 @@ function LatestState() {
     return icons[activityType] || '🏃';
   };
 
+  // Helper function to format time from seconds to hours and minutes
+  const formatTime = (seconds) => {
+    if (!seconds) return '0h 0m';
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    return `${hours}h ${minutes}m`;
+  };
+
+  // Helper function to get room metrics (assuming single room for now)
+  const getRoomMetrics = () => {
+    if (!dailySummary?.roomMetrics) return null;
+    // Get the first room's metrics (or you could specify a specific roomId)
+    const roomIds = Object.keys(dailySummary.roomMetrics);
+    if (roomIds.length === 0) return null;
+    return dailySummary.roomMetrics[roomIds[0]];
+  };
+
   if (isLoading) {
     return <div className="analytics-card loading">Loading current activity...</div>;
   }
 
   const activityStatus = getActivityStatus();
+  const roomMetrics = getRoomMetrics();
 
   return (
     <div className="analytics-card">
@@ -109,8 +152,61 @@ function LatestState() {
             )}
           </div>
         </div>
+        
+        {/* Horizontal line separator */}
+        <hr style={{ 
+          margin: '13px 0', 
+          border: 'none', 
+          borderTop: '1px solid #e5e7eb' 
+        }} />
+        
+        {/* Daily Summary Section */}
+          <h4 style={{ marginTop: '-10px', marginBottom: '4px', fontSize: '14px', fontWeight: '600', color: '#374151' }}>
+            Today's Summary
+          </h4>
+          
+          {dailySummary && roomMetrics ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '12px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Sleep:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.timeInBedSeconds)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Sitting:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.sittingTimeSeconds)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Standing:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.standingTimeSeconds)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Walking:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.walkingTimeSeconds)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Away:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.notPresentTimeSeconds)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#6b7280' }}>Idle:</span>
+                <span style={{ fontWeight: '500' }}>{formatTime(roomMetrics.idleTimeSeconds)}</span>
+              </div>
+              
+              {/* Alert counts */}
+              <div style={{ gridColumn: '1 / -1', marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #f3f4f6' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
+                  <span style={{ color: '#6b7280' }}>Falls: <strong>{roomMetrics.fallCount || 0}</strong></span>
+                  <span style={{ color: '#6b7280' }}>Help Signals: <strong>{roomMetrics.helpSignalCount || 0}</strong></span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p style={{ fontSize: '12px', color: '#9ca3af', fontStyle: 'italic' }}>
+              No summary data available for today yet.
+            </p>
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 

@@ -5,6 +5,28 @@
   max-width: 100%;
   margin: 0;
   width: 100%;
+  position: relative;
+  --grid-color: rgba(100, 149, 237, 0.15);
+  --grid-size: 40px;
+  --dot-size: 1px;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0),
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0, calc(var(--grid-size) / 2) calc(var(--grid-size) / 2);
+  background-color: #f8fafc;
+}
+
+.analytics-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(100, 149, 237, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .patient-header {
@@ -14,6 +36,8 @@
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .patient-header h2 {
@@ -34,6 +58,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 .analytics-card {
@@ -189,7 +215,7 @@
 
 .no-alerts {
   text-align: center;
-  padding: 40px 20px
+  padding: 40px 20px;
   color: #6b7280;
 }
 

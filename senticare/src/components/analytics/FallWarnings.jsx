@@ -1,8 +1,8 @@
 // src/components/analytics/FallWarnings.jsx
 import React, { useState, useEffect } from 'react';
-import { collection, query, where, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, orderBy, onSnapshot, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
-import { PATIENT_ID } from '../../firebase/appConfig';
+import { PATIENT_ID, DEMO_USER_ID } from '../../firebase/appConfig';
 
 function FallWarnings() {
   const [alerts, setAlerts] = useState([]);
@@ -47,6 +47,19 @@ function FallWarnings() {
     }
   };
 
+  const handleConfirmFall = async (alertId) => {
+    console.log(`Confirming fall alert: ${alertId}`);
+    const alertRef = doc(db, 'alerts', alertId);
+    try {
+      await updateDoc(alertRef, {
+        acknowledged: true,
+        acknowledgedBy: DEMO_USER_ID
+      });
+    } catch (error) {
+      console.error("Error confirming fall alert: ", error);
+    }
+  };
+
   if (isLoading) {
     return <div className="analytics-card loading">Loading alerts...</div>;
   }
@@ -87,7 +100,28 @@ function FallWarnings() {
                   {alert.acknowledged ? (
                     <span className="status-acknowledged">✓ Acknowledged</span>
                   ) : (
-                    <span className="status-pending">⏳ Pending</span>
+                    <div className="status-pending-container">
+                      <span className="status-pending">⏳ Pending</span>
+                      {alert.alertType === 'FALL_DETECTED' && (
+                        <button
+                          onClick={() => handleConfirmFall(alert.id)}
+                          className="confirm-fall-btn"
+                          style={{
+                            fontSize: '12px',
+                            padding: '4px 8px',
+                            marginLeft: '8px',
+                            backgroundColor: '#ef4444',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
+                          title="Confirm fall alert"
+                        >
+                          Confirm Fall
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>

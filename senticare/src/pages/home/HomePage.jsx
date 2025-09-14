@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CameraStatus from '../../components/camera/CameraStatus';
 import FloorInfo from '../../components/floor/FloorInfo';
 import FloorMap from '../../assets/FloorMap.svg';
@@ -6,6 +7,7 @@ import './HomePage.css';
 import QuickAnalytics from '../../components/analytics/QuickAnalytics';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [panOffset, setPanOffset] = useState({ x: 130, y: 0 });
   const [zoom, setZoom] = useState(0.9);
   const [isDragging, setIsDragging] = useState(false);
@@ -61,7 +63,13 @@ const Home = () => {
           }}
         >
           <img src={FloorMap} alt="Floor Map" className="floor-map-image" />
-          <div className="camera-indicator" style={{ top: '33%', left: '23%' }}>CAM 1</div>
+          <button 
+            className="camera-indicator" 
+            style={{ top: '33%', left: '23%' }}
+            onClick={() => navigate('/analytics')}
+          >
+            CAM 1
+          </button>
           <div className="camera-indicator" style={{ top: '66%', left: '66.5%' }}>CAM 2</div>
           <div className="camera-indicator" style={{ top: '66%', left: '36.5%' }}>CAM 3</div>
         </div>

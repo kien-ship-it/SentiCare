@@ -51,6 +51,20 @@ function AlertsBanner() {
     }
   };
 
+  // This function is called for confirming a fall alert (marks it acknowledged as well)
+  const handleConfirmFall = async (alertId) => {
+    console.log(`Confirming fall alert: ${alertId}`);
+    const alertRef = doc(db, 'alerts', alertId);
+    try {
+      await updateDoc(alertRef, {
+        acknowledged: true,
+        acknowledgedBy: DEMO_USER_ID
+      });
+    } catch (error) {
+      console.error("Error confirming fall alert: ", error);
+    }
+  };
+
   // If there are no active alerts, we render nothing.
   if (activeAlerts.length === 0) {
     return null;
@@ -65,9 +79,20 @@ function AlertsBanner() {
             <strong>ALERT:</strong> {alert.alertType} detected at{' '}
             {new Date(alert.timestamp.toDate()).toLocaleTimeString()}
           </p>
-          <button onClick={() => handleAcknowledge(alert.id)}>
-            Acknowledge
-          </button>
+          {String(alert.alertType || '').toLowerCase().includes('fall') ? (
+            <button
+              onClick={() => handleConfirmFall(alert.id)}
+              style={{ fontSize: '12px', padding: '4px 8px' }}
+              aria-label="Confirm fall alert"
+              title="Confirm fall alert"
+            >
+              Acknowledge
+            </button>
+          ) : (
+            <button onClick={() => handleAcknowledge(alert.id)}>
+              Acknowledge
+            </button>
+          )}
         </div>
       ))}
     </div>

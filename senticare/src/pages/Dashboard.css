@@ -5,6 +5,38 @@
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;
+  --grid-color: rgba(100, 149, 237, 0.25);
+  --grid-size: 40px;
+  --dot-size: 2px;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0),
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0, calc(var(--grid-size) / 2) calc(var(--grid-size) / 2);
+}
+
+.dashboard-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(100, 149, 237, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dashboard-layout::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(100, 149, 237, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .main-content {
@@ -24,6 +56,7 @@
   margin: 0;
   padding: 0;
   background: transparent;
+  z-index: 1;
 }
 
 /* Glassmorphic left sidebar overlay */
@@ -34,14 +67,24 @@
   width: 260px;
   height: calc(100vh - 48px);
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(21, 0, 0, 0.005);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 0;
   overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+/* Blue sidebar for home page */
+.sidebar-home {
+  background: rgba(100, 149, 237, 0.1);
+}
+
+/* Yellow sidebar for analytics page */
+.sidebar-analytics {
+  background: rgba(255, 193, 7, 0.1);
 }
 
 .sidebar-content {

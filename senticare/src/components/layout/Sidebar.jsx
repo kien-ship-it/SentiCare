@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo-container">
-        <h1 className="logo">SentiCare</h1>
+        <h1 className="logo">SentiCare<span className="plus">+</span></h1>
       </div>
       <div className="header-center">
         <CameraStatus />
