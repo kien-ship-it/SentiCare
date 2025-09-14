@@ -56,14 +56,3 @@
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-.top-right-widgets {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 1000;
-  max-width: 300px;
-}

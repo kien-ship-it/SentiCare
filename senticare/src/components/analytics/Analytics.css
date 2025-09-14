@@ -1,0 +1,378 @@
+/* src/components/analytics/Analytics.css */
+
+.analytics-container {
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.patient-header {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.patient-header h2 {
+  margin: 0 0 5px 0;
+  color: #1f2937;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.patient-subtitle {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.analytics-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.analytics-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-card.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.avg-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.avg-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.avg-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.alert-count {
+  font-size: 12px;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.current-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.score-value {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.score-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.chart-container {
+  margin: 15px 0;
+}
+
+.custom-tooltip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.activity-summary {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.activity-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.activity-name {
+  color: #4b5563;
+}
+
+.activity-value {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.alerts-log {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.no-alerts {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.no-alerts-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.alert-log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.alert-log-item.high {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+}
+
+.alert-log-item.medium {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+}
+
+.alert-log-item.low {
+  background: #f0f9ff;
+  border-left: 4px solid #06b6d4;
+}
+
+.alert-log-item.acknowledged {
+  opacity: 0.7;
+}
+
+.alert-icon {
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.alert-details {
+  flex: 1;
+}
+
+.alert-type {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.alert-time {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.alert-location {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 2px;
+}
+
+.alert-confidence {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.alert-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-acknowledged {
+  color: #10b981;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #f59e0b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.no-data p {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.no-data small {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Activity Status Component Styles */
+.status-timestamp {
+  font-size: 12px;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.activity-status-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.activity-status-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.activity-icon {
+  font-size: 32px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.activity-info {
+  flex: 1;
+}
+
+.activity-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.activity-location {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.activity-timestamp {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Sleep Analytics spanning 2 columns */
+.sleep-analytics-wide {
+  grid-column: span 2;
+}
+
+/* Responsive design */
+@media (max-width: 1400px) {
+  .analytics-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .sleep-analytics-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1100px) {
+  .analytics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .sleep-analytics-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1000px) {
+  .analytics-container {
+    padding: 0;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .analytics-card {
+    padding: 16px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .avg-metric,
+  .current-score {
+    align-items: flex-start;
+  }
+  
+  .activity-summary {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -12,8 +12,12 @@
     radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0);
   background-size: var(--grid-size) var(--grid-size);
   background-position: 0 0, calc(var(--grid-size) / 2) calc(var(--grid-size) / 2);
-  position: relative;
-  overflow: hidden;
+  /* Account for sidebar positioning only */
+  padding-left: 308px; /* 260px sidebar + 24px margin + 24px gap */
+  padding-right: 24px; /* Right margin only */
+  padding-top: 24px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
 }
 
 .analytics-page::before {
@@ -43,7 +47,8 @@
 .analytics-content {
   position: relative;
   z-index: 1;
-  padding: 120px 24px 24px 24px;
+  padding: 24px;
   height: 100%;
   overflow-y: auto;
+  max-width: 100%;
 }

@@ -19,9 +19,6 @@ const Dashboard = () => {
           </div>
         </div>
       </aside>
-      <div className="top-right-widgets">
-        <QuickAnalytics />
-      </div>
     </div>
   );
 };

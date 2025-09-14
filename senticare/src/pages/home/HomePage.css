@@ -121,3 +121,14 @@
   transform: translate(-50%, -50%) scale(1.1);
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
+
+.top-right-widgets {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1000;
+  max-width: 300px;
+}

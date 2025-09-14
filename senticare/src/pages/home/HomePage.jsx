@@ -3,6 +3,7 @@ import CameraStatus from '../../components/camera/CameraStatus';
 import FloorInfo from '../../components/floor/FloorInfo';
 import FloorMap from '../../assets/FloorMap.svg';
 import './HomePage.css';
+import QuickAnalytics from '../../components/analytics/QuickAnalytics';
 
 const Home = () => {
   const [panOffset, setPanOffset] = useState({ x: 130, y: 0 });
@@ -66,6 +67,9 @@ const Home = () => {
         </div>
       </div>
       <FloorInfo />
+      <div className="top-right-widgets">
+        <QuickAnalytics />
+      </div>
     </div>
   );
 };
