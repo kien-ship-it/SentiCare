@@ -12,6 +12,8 @@ const Dashboard = () => {
   const getSidebarClass = () => {
     if (location.pathname.includes('/analytics')) {
       return 'sidebar-glass sidebar-analytics';
+    } else if (location.pathname.includes('/intelligence')) {
+      return 'sidebar-glass sidebar-intelligence';
     }
     return 'sidebar-glass sidebar-home';
   };

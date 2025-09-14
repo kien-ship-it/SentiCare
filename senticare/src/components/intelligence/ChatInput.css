@@ -1,0 +1,107 @@
+.chat-input-container {
+  border-top: 1px solid rgba(139, 69, 19, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+  padding: 20px 24px;
+}
+
+.quick-prompts {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.quick-prompt-btn {
+  background: rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: rgba(139, 69, 19, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.quick-prompt-btn:hover {
+  background: rgba(139, 69, 19, 0.2);
+  border-color: rgba(139, 69, 19, 0.3);
+  color: rgba(139, 69, 19, 1);
+  transform: translateY(-1px);
+}
+
+.chat-input-form {
+  width: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(139, 69, 19, 0.2);
+  border-radius: 16px;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: rgba(139, 69, 19, 0.4);
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.chat-textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #212529;
+  resize: none;
+  min-height: 20px;
+  max-height: 120px;
+  font-family: inherit;
+}
+
+.chat-textarea::placeholder {
+  color: #6c757d;
+}
+
+.send-button {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.8) 0%, rgba(139, 69, 19, 1) 100%);
+  border: none;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 1) 0%, rgba(101, 50, 13, 1) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+.send-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(139, 69, 19, 0.2);
+}
+
+.send-button:disabled {
+  background: rgba(139, 69, 19, 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.send-button svg {
+  width: 20px;
+  height: 20px;
+}

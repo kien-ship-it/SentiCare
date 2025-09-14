@@ -1,0 +1,243 @@
+.chat-message {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.assistant {
+  justify-content: flex-start;
+}
+
+.message-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 70%;
+}
+
+.chat-message.user .message-content {
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  border: 2px solid rgba(139, 69, 19, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.chat-message.user .message-avatar {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-color: #007bff;
+}
+
+.chat-message.assistant .message-avatar {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(139, 69, 19, 0.2) 100%);
+  border-color: rgba(139, 69, 19, 0.3);
+}
+
+.message-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 16px;
+  padding: 16px 20px;
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
+}
+
+.chat-message.user .message-bubble {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.chat-message.assistant .message-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  color: #212529;
+  border-color: rgba(139, 69, 19, 0.2);
+}
+
+.message-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+}
+
+.chat-message.user .message-bubble::before {
+  right: -15px;
+  border-left-color: #007bff;
+  border-right: none;
+}
+
+.chat-message.assistant .message-bubble::before {
+  left: -15px;
+  border-right-color: rgba(255, 255, 255, 0.95);
+  border-left: none;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.message-timestamp {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: right;
+}
+
+.chat-message.user .message-timestamp {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.chat-message.assistant .message-timestamp {
+  color: #6c757d;
+}
+
+/* Hover effects */
+.message-bubble:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
+  transition: all 0.2s ease;
+}
+
+.chat-message.user .message-bubble:hover {
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Markdown styling for AI responses */
+.markdown-h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(139, 69, 19, 0.9);
+  margin: 16px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+}
+
+.markdown-h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(139, 69, 19, 0.8);
+  margin: 14px 0 10px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+}
+
+.markdown-h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(139, 69, 19, 0.7);
+  margin: 12px 0 8px 0;
+}
+
+.markdown-p {
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #212529;
+}
+
+.markdown-ul, .markdown-ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.markdown-li {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.markdown-code-inline {
+  background: rgba(139, 69, 19, 0.1);
+  color: rgba(139, 69, 19, 0.9);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.markdown-code-block {
+  background: rgba(139, 69, 19, 0.05);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.markdown-code-block code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(139, 69, 19, 0.9);
+}
+
+.markdown-blockquote {
+  border-left: 4px solid rgba(139, 69, 19, 0.3);
+  margin: 12px 0;
+  padding: 8px 16px;
+  background: rgba(139, 69, 19, 0.05);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #495057;
+}
+
+.markdown-strong {
+  font-weight: 600;
+  color: rgba(139, 69, 19, 0.9);
+}
+
+.markdown-em {
+  font-style: italic;
+  color: #495057;
+}
+
+/* Special styling for health report sections */
+.markdown-h1:first-child {
+  margin-top: 0;
+}
+
+.markdown-p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .markdown-h1 {
+    font-size: 18px;
+  }
+  
+  .markdown-h2 {
+    font-size: 16px;
+  }
+  
+  .markdown-h3 {
+    font-size: 15px;
+  }
+  
+  .markdown-code-block {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

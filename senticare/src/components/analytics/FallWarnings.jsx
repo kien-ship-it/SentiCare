@@ -118,7 +118,7 @@ function FallWarnings() {
                           }}
                           title="Confirm fall alert"
                         >
-                          Confirm Fall
+                          Acknowledge
                         </button>
                       )}
                     </div>

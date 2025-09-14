@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/home/HomePage';
 import Analytics from './pages/analytics/AnalyticsPage';
+import Intelligence from './pages/intelligence/IntelligencePage';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Navigate to="/home" replace />} />
         <Route path="home" element={<Home />} />
         <Route path="analytics" element={<Analytics />} />
+        <Route path="intelligence" element={<Intelligence />} />
       </Route>
     </Routes>
   );

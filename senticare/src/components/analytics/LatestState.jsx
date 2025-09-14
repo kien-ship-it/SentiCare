@@ -5,33 +5,32 @@ import { db } from '../../firebase/firebaseConfig';
 import { PATIENT_ID } from '../../firebase/appConfig';
 
 function LatestState() {
-  const [lastActivity, setLastActivity] = useState(null);
+  const [currentState, setCurrentState] = useState(null);
   const [dailySummary, setDailySummary] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Get latest event
-    const eventsQuery = query(
-      collection(db, 'events'),
-      where('patientId', '==', PATIENT_ID),
-      orderBy('timestamp', 'desc'),
-      limit(1)
-    );
+    // Get current state from patientStatus collection
+    const patientStatusRef = doc(db, 'patientStatus', 'pXT5aC3gQd9F8hJ2kL5n');
 
-    const unsubscribeActivity = onSnapshot(eventsQuery, (querySnapshot) => {
-      if (!querySnapshot.empty) {
-        const latestEvent = querySnapshot.docs[0].data();
-        setLastActivity({
-          type: latestEvent.eventType,
-          timestamp: latestEvent.timestamp.toDate(),
-          location: latestEvent.roomId
-        });
+    const unsubscribeStatus = onSnapshot(patientStatusRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        console.log('PatientStatus data:', data); // Debug log
+        if (data.currentState) {
+          console.log('CurrentState:', data.currentState); // Debug log
+          setCurrentState({
+            type: data.currentState.activity || data.currentState.state || data.currentState.eventType || data.currentState,
+            timestamp: data.currentState.timestamp?.toDate() || new Date(),
+            location: data.currentState.location || data.currentState.roomId || data.currentState.room
+          });
+        }
       }
       setIsLoading(false);
     });
 
     return () => {
-      unsubscribeActivity();
+      unsubscribeStatus();
     };
   }, []);
 
@@ -60,15 +59,15 @@ function LatestState() {
   }, []);
 
   const getActivityStatus = () => {
-    if (!lastActivity) return { text: 'Unknown', color: '#6b7280', icon: '❓' };
+    if (!currentState) return { text: 'Unknown', color: '#6b7280', icon: '❓' };
     
-    const timeDiff = (new Date() - lastActivity.timestamp) / (1000 * 60); // minutes
+    const timeDiff = (new Date() - currentState.timestamp) / (1000 * 60); // minutes
     
     if (timeDiff < 5) {
       return { 
-        text: `Currently ${lastActivity.type}`, 
+        text: `Currently ${currentState.type}`, 
         color: '#10b981',
-        icon: getActivityIcon(lastActivity.type)
+        icon: getActivityIcon(currentState.type)
       };
     } else if (timeDiff < 30) {
       return { 
@@ -139,12 +138,12 @@ function LatestState() {
             <div className="activity-text" style={{ color: activityStatus.color }}>
               {activityStatus.text}
             </div>
-            {lastActivity?.location && (
-              <div className="activity-location">📍 {lastActivity.location}</div>
+            {currentState?.location && (
+              <div className="activity-location">📍 {currentState.location}</div>
             )}
-            {lastActivity && (
+            {currentState && (
               <div className="activity-timestamp">
-                Last update: {lastActivity.timestamp.toLocaleTimeString('en-US', { 
+                Last update: {currentState.timestamp.toLocaleTimeString('en-US', { 
                   hour: '2-digit', 
                   minute: '2-digit' 
                 })}

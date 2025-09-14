@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo-container">
-        <h1 className="logo">SentiCare<span className="plus">+</span></h1>
+        <h1 className="logo">SentiCare</h1>
       </div>
       <div className="header-center">
         <CameraStatus />
@@ -22,6 +22,10 @@ const Sidebar = () => {
           <NavLink to="/analytics" className="nav-item">
             <span className="nav-icon">📊</span>
             <span className="nav-label">Analytics</span>
+          </NavLink>
+          <NavLink to="/intelligence" className="nav-item">
+            <span className="nav-icon">🧠</span>
+            <span className="nav-label">Intelligence</span>
           </NavLink>
         </nav>
         <ProfileHeader />

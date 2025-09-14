@@ -45,6 +45,7 @@
   font-weight: 500;
   color: var(--text-primary);
   margin: 0;
+  white-space: nowrap;
 }
 
 .user-role {

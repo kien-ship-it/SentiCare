@@ -15,6 +15,10 @@ const LogoContainer = () => {
           <span className="nav-label">Analytics</span>
           <span className="nav-dot"></span>
         </NavLink>
+        <NavLink to="/intelligence" className="nav-item">
+          <span className="nav-label">Intelligence</span>
+          <span className="nav-dot"></span>
+        </NavLink>
       </nav>
     </div>
   );
