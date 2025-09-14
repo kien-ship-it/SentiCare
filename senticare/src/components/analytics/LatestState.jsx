@@ -9,21 +9,21 @@ function LatestState() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Get latest activity
-    const activitiesQuery = query(
-      collection(db, 'activities'),
+    // Get latest event
+    const eventsQuery = query(
+      collection(db, 'events'),
       where('patientId', '==', PATIENT_ID),
       orderBy('timestamp', 'desc'),
       limit(1)
     );
 
-    const unsubscribeActivity = onSnapshot(activitiesQuery, (querySnapshot) => {
+    const unsubscribeActivity = onSnapshot(eventsQuery, (querySnapshot) => {
       if (!querySnapshot.empty) {
-        const latestActivity = querySnapshot.docs[0].data();
+        const latestEvent = querySnapshot.docs[0].data();
         setLastActivity({
-          type: latestActivity.type,
-          timestamp: latestActivity.timestamp.toDate(),
-          location: latestActivity.location
+          type: latestEvent.eventType,
+          timestamp: latestEvent.timestamp.toDate(),
+          location: latestEvent.roomId
         });
       }
       setIsLoading(false);
@@ -62,11 +62,11 @@ function LatestState() {
 
   const getActivityIcon = (activityType) => {
     const icons = {
-      'walking': '🚶',
-      'sitting': '🪑',
-      'standing': '🧍',
-      'sleeping': '😴',
-      'away': '🚪'
+      'WALKING': '🚶',
+      'SITTING': '🪑',
+      'STANDING': '🧍',
+      'IN_BED': '😴',
+      'NOT_PRESENT': '🚪'
     };
     return icons[activityType] || '🏃';
   };

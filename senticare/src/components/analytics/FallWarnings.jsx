@@ -52,7 +52,7 @@ function FallWarnings() {
   }
 
   return (
-    <div className="analytics-card">
+    <div className="analytics-card alert-history-wide">
       <div className="card-header">
         <h3>Alert History</h3>
         <span className="alert-count">{alerts.length} total alerts</span>

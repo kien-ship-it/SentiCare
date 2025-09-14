@@ -40,9 +40,11 @@
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease;
+  min-height: 345px;
+  max-height: 600px;
 }
 
 .analytics-card:hover {
@@ -62,8 +64,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: 1px solid #f3f4f6;
 }
 
@@ -74,22 +76,33 @@
   font-weight: 600;
 }
 
-.avg-metric {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+/* Sleep average display */
+.sleep-average-display {
+  text-align: center;
+  margin: 10px 0 20px;
+  padding: 10px 0;
 }
 
-.avg-label {
-  font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 2px;
-}
-
-.avg-value {
-  font-size: 18px;
-  font-weight: 600;
+.sleep-average-value {
+  font-size: 48px;
+  font-weight: 700;
   color: #4f46e5;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.sleep-average-unit {
+  font-size: 36px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.sleep-average-label {
+  font-size: 14px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
 
 .alert-count {
@@ -118,7 +131,7 @@
 }
 
 .chart-container {
-  margin: 15px 0;
+  margin: -5px 0 5px 0;
 }
 
 .custom-tooltip {
@@ -130,10 +143,13 @@
 }
 
 .activity-summary {
-  margin-top: 15px;
+  margin: 10px auto 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
+  max-width: 90%;
+  padding: 0 10px;
 }
 
 .activity-item {
@@ -159,13 +175,21 @@
 }
 
 .alerts-log {
-  max-height: 400px;
-  overflow-y: auto;
+  max-height: 250px;
+  overflow-y: scroll;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgb(219, 219, 219) transparent;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.alerts-log::-webkit-scrollbar {
+  display: none;
 }
 
 .no-alerts {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 20px
   color: #6b7280;
 }
 
@@ -178,10 +202,10 @@
 .alert-log-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 15px;
+  gap: 10px;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   transition: background-color 0.2s ease;
 }
 
@@ -323,6 +347,16 @@
   grid-column: span 2;
 }
 
+/* Alert History spanning 2 columns */
+.alert-history-wide {
+  grid-column: span 2;
+}
+
+/* Activity Breakdown spanning 2 columns */
+.activity-breakdown-wide {
+  grid-column: span 2;
+}
+
 /* Responsive design */
 @media (max-width: 1400px) {
   .analytics-grid {
@@ -331,6 +365,14 @@
   }
   
   .sleep-analytics-wide {
+    grid-column: span 2;
+  }
+  
+  .alert-history-wide {
+    grid-column: span 2;
+  }
+  
+  .activity-breakdown-wide {
     grid-column: span 2;
   }
 }
@@ -342,6 +384,14 @@
   }
   
   .sleep-analytics-wide {
+    grid-column: span 2;
+  }
+  
+  .alert-history-wide {
+    grid-column: span 2;
+  }
+  
+  .activity-breakdown-wide {
     grid-column: span 2;
   }
 }

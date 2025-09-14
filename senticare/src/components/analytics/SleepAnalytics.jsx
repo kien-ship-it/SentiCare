@@ -61,14 +61,15 @@ function SleepAnalytics() {
     <div className="analytics-card sleep-analytics-wide">
       <div className="card-header">
         <h3>Sleep Analysis</h3>
-        <div className="avg-metric">
-          <span className="avg-label">7-Day Average:</span>
-          <span className="avg-value">{avgSleepTime}h</span>
-        </div>
       </div>
       
-      <div className="chart-container">
-        <ResponsiveContainer width="100%" height={200}>
+      <div className="sleep-average-display">
+        <div className="sleep-average-value">{avgSleepTime}<span className="sleep-average-unit">h</span></div>
+        <div className="sleep-average-label">7-Day Average</div>
+      </div>
+      
+      <div className="chart-container" style={{ marginTop: '30px' }}>
+        <ResponsiveContainer width="100%" height={180}>
           <BarChart data={sleepData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />

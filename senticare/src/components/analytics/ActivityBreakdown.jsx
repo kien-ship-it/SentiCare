@@ -84,13 +84,13 @@ function ActivityBreakdown() {
   }
 
   return (
-    <div className="analytics-card">
+    <div className="analytics-card activity-breakdown-wide">
       <div className="card-header">
         <h3>Today's Activity Breakdown</h3>
       </div>
       
-      <div className="chart-container">
-        <ResponsiveContainer width="100%" height={250}>
+      <div className="chart-container" style={{ marginTop: '0', paddingTop: '0' }}>
+        <ResponsiveContainer width="100%" height={230}>
           <PieChart>
             <Pie
               data={activityData}
