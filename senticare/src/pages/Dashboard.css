@@ -1,19 +1,10 @@
 .dashboard-layout {
   position: relative;
+  background: transparent;
+  color: #212529;
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: #f8f9fa; /* Fallback background */
-}
-
-.color-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: -1;
 }
 
 .main-content {
@@ -25,11 +16,14 @@
 }
 
 .content-area {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
   background: transparent;
-  z-index: 1;
 }
 
 /* Glassmorphic left sidebar overlay */

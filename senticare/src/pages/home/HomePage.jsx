@@ -5,7 +5,7 @@ import FloorMap from '../../assets/FloorMap.svg';
 import './HomePage.css';
 
 const Home = () => {
-  const [panOffset, setPanOffset] = useState({ x: 100, y: 0 });
+  const [panOffset, setPanOffset] = useState({ x: 130, y: 0 });
   const [zoom, setZoom] = useState(0.9);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
@@ -51,30 +51,18 @@ const Home = () => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
       >
         <div 
           className="floor-canvas"
           style={{
-            transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoom})`,
-            cursor: isDragging ? 'grabbing' : 'grab',
-            transition: isDragging ? 'none' : 'transform 0.15s ease-out',
-            position: 'relative',
-            zIndex: 1
+            transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoom})`
           }}
         >
-          <img 
-            src={FloorMap} 
-            alt="Floor Plan" 
-            className="floor-map-image"
-            draggable="false"
-            style={{
-              filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))'
-            }}
-          />
-          {/* Camera indicators will be added here */}
-          <div className="camera-indicator" style={{ top: '30%', left: '40%' }}>1</div>
-          <div className="camera-indicator" style={{ top: '60%', left: '70%' }}>2</div>
-          <div className="camera-indicator" style={{ top: '45%', left: '20%' }}>3</div>
+          <img src={FloorMap} alt="Floor Map" className="floor-map-image" />
+          <div className="camera-indicator" style={{ top: '33%', left: '23%' }}>CAM 1</div>
+          <div className="camera-indicator" style={{ top: '66%', left: '66.5%' }}>CAM 2</div>
+          <div className="camera-indicator" style={{ top: '66%', left: '36.5%' }}>CAM 3</div>
         </div>
       </div>
       <FloorInfo />

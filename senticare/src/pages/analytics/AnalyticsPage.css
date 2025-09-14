@@ -1,37 +1,49 @@
 .analytics-page {
   position: relative;
-  height: 100%;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-app);
+  overflow: hidden;
+  --grid-color: rgba(255, 152, 0, 0.25); /* Orange grid color */
+  --grid-size: 40px;
+  --dot-size: 2px;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0),
+    radial-gradient(circle at 1px 1px, var(--grid-color) var(--dot-size), transparent 0);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0, calc(var(--grid-size) / 2) calc(var(--grid-size) / 2);
+  position: relative;
+  overflow: hidden;
+}
+
+.analytics-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.analytics-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .analytics-content {
   position: relative;
-  width: 100%;
-  max-width: 1200px;
-  min-height: 60vh;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  padding: 2rem;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
   z-index: 1;
-}
-
-.analytics-content h1 {
-  color: #333;
-  margin-bottom: 1.5rem;
-}
-
-.analytics-content p {
-  color: #555;
-  line-height: 1.6;
+  padding: 120px 24px 24px 24px;
+  height: 100%;
+  overflow-y: auto;
 }
