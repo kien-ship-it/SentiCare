@@ -1,0 +1,12 @@
+{
+    "patientId": "pXT5aC3gQd9F8hJ2kL5n",
+    "roomId": "Living Room",
+    "demoUserId": "demo_caregiver_01",
+    "projectId": "senticare-wellness-system",
+    "serviceAccountKeyPath": "scripts/serviceAccountKey.json",
+    "timezone": "America/New_York",
+    "debounce_duration": 7,
+    "heartbeat_interval": 180,
+    "confidence_threshold": 0.70,
+    "max_event_duration": 300
+}
