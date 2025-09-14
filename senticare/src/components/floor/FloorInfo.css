@@ -1,20 +1,60 @@
 .floor-info {
   position: fixed;
   bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid var(--border-color);
+  left: 45%;
+  /* Offset to the right to account for the left sidebar */
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 8px 16px;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: none;
+  transition: all 0.3s ease;
 }
 
-.floor-text {
+.floor-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.floor-number {
+  background-color: #FF4081; /* Pink color */
+  color: white;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(255, 64, 129, 0.3);
+}
+
+.divider {
+  height: 32px;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.patients-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.patient-badge {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.patient-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }

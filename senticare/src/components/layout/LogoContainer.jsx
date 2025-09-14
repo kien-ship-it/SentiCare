@@ -5,9 +5,7 @@ import './LogoContainer.css';
 const LogoContainer = () => {
   return (
     <div className="logo-container-wrapper">
-      <div className="logo-container">
-        <h1 className="logo">SentiCare</h1>
-      </div>
+      <h1 className="logo">SentiCare</h1>
       <nav className="nav-menu">
         <NavLink to="/home" className="nav-item">
           <span className="nav-label">Home</span>

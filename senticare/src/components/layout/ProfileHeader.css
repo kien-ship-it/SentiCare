@@ -1,7 +1,4 @@
 .profile-header {
-  position: fixed;
-  top: 24px;
-  right: 24px;
   background: rgba(255, 255, 255, 0.8);
   border: 2px solid var(--border-color);
   border-radius: 12px;

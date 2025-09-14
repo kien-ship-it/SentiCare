@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ProfileHeader from './ProfileHeader';
-import CameraStatus from '../camera/CameraStatus';
+import CameraStatus from './CameraStatus';
 import './Sidebar.css';
 
 const Sidebar = () => {
