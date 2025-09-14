@@ -1,0 +1,42 @@
+.quick-analytics {
+  position: fixed;
+  top: 120px;
+  right: 24px;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.analytics-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.analytics-item:last-child {
+  margin-bottom: 0;
+}
+
+.analytics-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.analytics-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
